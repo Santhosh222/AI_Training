@@ -1,0 +1,83 @@
+// ============================================================
+// Reusable mixins
+// ============================================================
+
+@use "variables" as *;
+@use "breakpoints" as *;
+@use "typography" as *;
+
+@mixin container {
+  width: 100%;
+  max-width: $container-max;
+  margin-inline: auto;
+  padding-inline: $space-4;
+
+  @include up($bp-md) {
+    padding-inline: $space-5;
+  }
+
+  @include up($bp-lg) {
+    padding-inline: $space-6;
+  }
+}
+
+@mixin gradient-text($gradient: $gradient-accent) {
+  background: $gradient;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+@mixin focus-ring {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+
+  &:focus-visible {
+    outline-color: $accent;
+  }
+}
+
+@mixin hover-lift {
+  transition: transform $duration-base $ease, box-shadow $duration-base $ease,
+    border-color $duration-base $ease, background-color $duration-base $ease;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  height: 44px;
+  padding-inline: $space-5;
+  border: 1px solid transparent;
+  border-radius: $radius-md;
+  font-family: $font-sans;
+  font-size: $fs-sm;
+  font-weight: $fw-medium;
+  letter-spacing: $ls-snug;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  text-decoration: none;
+  transition: background-color $duration-fast $ease,
+    border-color $duration-fast $ease, color $duration-fast $ease,
+    transform $duration-fast $ease, box-shadow $duration-fast $ease;
+  @include focus-ring;
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
