@@ -42,7 +42,11 @@ function Navbar() {
   const closeMenu = () => setOpen(false);
 
   return (
-    <header className={`navbar ${scrolled ? "navbar--scrolled" : ""}`}>
+    <header
+      className={`navbar ${scrolled ? "navbar--scrolled" : ""} ${
+        open ? "navbar--menu-open" : ""
+      }`}
+    >
       <div className="navbar__inner">
         <a href="#top" className="navbar__brand" onClick={closeMenu}>
           <span className="navbar__logo" aria-hidden="true">
